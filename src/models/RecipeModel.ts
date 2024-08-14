@@ -12,17 +12,11 @@ interface Recipe {
 }
 
 class RecipeModel {
-    // 1. Propriété
     private recipes: Recipe[] = []; // Stockage privé des recettes
 
 
-    // 2. Constructor
-    constructor() {
-        // Initialisation si nécessaire, peut être étendu plus tard
-    }
+    constructor() {}
 
-
-    // 3. Méthodes
     addRecipe(newRecipe: Recipe[]) {
         this.recipes.push(...newRecipe); // Ajoute les nouvelles recettes à la liste existante
     }
@@ -33,11 +27,6 @@ class RecipeModel {
 
     getRecipeById(id: string): Recipe | undefined {
         return this.recipes.find((recipe) => recipe.id === id);
-    }
-
-    // @ts-ignore
-    updateRecipe(recipeToUpdate : Recipe){
-       // TODO
     }
 }
 

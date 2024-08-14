@@ -5,35 +5,41 @@
  *
  */
 
-// TODO A REFAIRE
-export default class RecipeView {
-    private recipeListElement: HTMLElement;
+class RecipeView {
+    private recipeDetail : HTMLElement;
 
     constructor() {
         // @ts-ignore
-        this.recipeListElement = document.getElementById('recipe-list');
+        this.mainContent  = document.getElementById('main-content');
+        // @ts-ignore
+        this.recipeDetail = document.getElementById('recipe-detail');
     }
 
-    public displayRecipes(recipes: any[]): void {
-        this.recipeListElement.innerHTML = ''; // Effacer la liste existante
+    public displayRecipe(recipe : any) {
+        this.recipeDetail.innerHTML = '';
 
-        recipes.forEach(recipe => {
-            const recipeCard = document.createElement('div');
-            recipeCard.classList.add('recipe');
+        const recipeItem = document.createElement('div');
+        recipeItem.classList.add('recipe-detail');
 
-            const title = document.createElement('p');
-            title.textContent = recipe.title;
-            recipeCard.appendChild(title);
+        const title = document.createElement('p');
+        title.textContent = recipe.title;
+        title.classList.add('title');
+        recipeItem.appendChild(title);
 
-            const publisher = document.createElement('p');
-            publisher.textContent = recipe.publisher;
-            recipeCard.appendChild(publisher);
 
-            const img = document.createElement('img');
-            img.setAttribute('src', recipe.image_url);
-            recipeCard.appendChild(img);
+        const img = document.createElement('img');
+        img.setAttribute('src', recipe.image_url);
+        recipeItem.appendChild(img);
 
-            this.recipeListElement.appendChild(recipeCard);
-        });
+        const p  = document.createElement('p');
+        p.textContent = recipe.publisher;
+        recipeItem.appendChild(p);
+
+
+        this.recipeDetail.appendChild(recipeItem);
+
+        console.log(this.recipeDetail);
     }
 }
+
+export default RecipeView;

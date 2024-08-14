@@ -1,78 +1,79 @@
-/* Style général pour le conteneur de recettes */
+* {
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    color: #333;
+}
+
 .recipe-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
-    background-color: #f8f8f8;
-    justify-content: center;
+    height: 100vh;
 }
 
-/* Style pour chaque recette individuelle */
-.recipe {
-    position: relative;
-    width: 300px;
+.sidebar {
+    width: 33.333%;
+    background-color: #f7f7f7;
+    overflow-y: auto;
+}
+
+.main-content {
+    width: 66.666%;
     background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 20px;
+    overflow-y: auto; /* Pour la scrollabilité si le contenu déborde */
 }
 
-.recipe:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-/* Style pour l'image de la recette */
-.recipe img {
+.search-input, .search-button {
     width: 100%;
-    height: auto;
-    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    background-color: #ff385c;
+    color: white;
+    cursor: pointer;
+    border: none;
 }
 
-/* Conteneur pour le texte de la recette */
-.recipe-content {
-    padding: 15px;
+.recipe-list {
+    padding: 20px;
 }
 
-.recipe-title {
-    font-size: 1.2em;
-    margin: 0;
-    color: #333;
+.recipe-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.recipe-item img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+
+.recipe-item .title {
     font-weight: bold;
 }
 
-.recipe-publisher {
-    font-size: 0.9em;
-    color: #777;
-    margin: 5px 0 10px;
+.recipe-item .author {
+    font-size: 0.8rem;
 }
 
-/* Style pour le bouton de bookmark */
-.bookmark-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: background-color 0.3s;
+.recipe-detail img {
+    width: 100%;
+    height: auto;
 }
 
-.bookmark-button:hover {
-    background-color: #ffdf91;
+.recipe-detail .title {
+    font-size: 2rem;
+    margin-top: 10px;
 }
 
-.bookmark-button:before {
-    content: "★";
-    font-size: 1.5em;
-    color: #f0c040;
-    display: block;
-    text-align: center;
-    line-height: 40px;
+.recipe-detail .ingredients, .recipe-detail .instructions {
+    margin-top: 20px;
 }

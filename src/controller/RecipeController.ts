@@ -17,30 +17,22 @@ import ApiService from '../services/ApiService'; // Import par défaut
 
 // @ts-ignore
 class RecipeController {
-    //________________________________________//
-    // Propriété
-    //________________________________________//
 
     // @ts-ignore
-    private recipeModel : RecipeModel;
+    private recipeModel: RecipeModel;
 
     //@ts-ignore
     private recipeView: RecipeView
 
     // @ts-ignore
-    private searchView : SearchView;
+    private searchView: SearchView;
 
     // @ts-ignore
-    private apiService : ApiService;
+    private apiService: ApiService;
 
-
-
-    //__________________________________________//
-    // Constructeur
-    //__________________________________________//
 
     // @ts-ignore
-    constructor(recipeModel : RecipeModel, searchView : SearchView, apiService : ApiService, recipeView : RecipeView) {
+    constructor(recipeModel: RecipeModel, searchView: SearchView, apiService: ApiService, recipeView: RecipeView) {
         this.recipeModel = recipeModel;
         this.searchView = searchView;
         this.apiService = apiService;
@@ -50,13 +42,7 @@ class RecipeController {
         this.configureSearchListener();
     }
 
-
-
-    //___________________________________________//
-    // Méthodes
-    //___________________________________________//
-
-    public configureSearchListener(){
+    public configureSearchListener() {
         this.searchView.onSearch((searchTerm: string) => {
             this.handleSearch(searchTerm)
         })
@@ -64,25 +50,26 @@ class RecipeController {
 
 
     // @ts-ignore
-    handleSearch(searchTerm : string) : void {
-        try{
+    handleSearch(searchTerm: string): void {
+        try {
             this.apiService.fetchRecipes(searchTerm)
                 .then((recipesData: any) => {
                     this.updateModel(recipesData);
                 })
-        } catch (error){
+        } catch (error) {
             console.error("Error fetching recipes: ", error);
         }
     }
 
     // @ts-ignore
-    updateModel(recipeData : any){
+    updateModel(recipeData: any) {
+        console.log(recipeData)
         // @ts-ignore
-        const recipes = recipeData.data.recipes.map((data : any) => ({
-            id : data.id,
-            title : data.title,
-            image_url : data.image_url,
-            publisher : data.publisher,
+        const recipes = recipeData.data.recipes.map((data: any) => ({
+            id: data.id,
+            title: data.title,
+            image_url: data.image_url,
+            publisher: data.publisher,
         }))
 
         this.recipeModel.addRecipe(recipes)
@@ -90,9 +77,16 @@ class RecipeController {
     }
 
     //@ts-ignore
-    updateView() : void {
+    updateView(): void {
         const recipes = this.recipeModel.getAllRecipe();
-        this.recipeView.displayRecipes(recipes);
+        this.searchView.displayRecipes(recipes);
+    }
+
+
+    handleRecipeClick(id: string) {
+        const recipe = this.recipeModel.getRecipeById(id);
+        console.log(recipe)
+        this.recipeView.displayRecipe(recipe);
     }
 }
 export default RecipeController;

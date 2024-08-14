@@ -1,19 +1,25 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Forkify App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Application</title>
+    <link rel="stylesheet" href="../src/style.css">
 </head>
 <body>
-<h1>Forkify app</h1>
-<input id="search-input" placeholder="Search over 1,000,000 recipe"/>
-<button id="button-search-input">Search</button>
-
-<div id="recipe-container">
-    <ul id="recipe-list">
-    </ul>
+<div class="recipe-container">
+    <div class="sidebar">
+            <input  id="search-input" type="text" placeholder="Search recipes..." class="search-input">
+            <button id="button-search-input" type="submit" class="search-button">Search</button>
+        <div id="recipe-list" class="recipe-list">
+            <!-- Recipe items will be injected here dynamically -->
+        </div>
+    </div>
+    <div id="main-content">
+        <div id="recipe-detail">
+            <!-- Recipe details will be displayed here after clicking a recipe item -->
+        </div>
+    </div>
 </div>
 
 <script type="module" src="./main.ts"></script>
